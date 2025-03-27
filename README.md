@@ -1,7 +1,5 @@
 # Mini Oxford Dictionary App
 
-![Demo Screenshot](./assets/Screenshot%202025-03-27%20022546.png) 
-
 A modern dictionary web application with:
 - Word definitions, pronunciations, and examples
 - Word of the day feature

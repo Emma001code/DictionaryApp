@@ -1,16 +1,24 @@
-/* === GLOBAL STYLES === */
+/**
+ * Dictionary App - Stylesheet
+ * Contains all styling rules for the application
+ * Includes dark mode support and responsive design
+ */
+
+/* === GLOBAL COLOR VARIABLES === */
 :root {
-    --primary: #4e54c8;
-    --secondary: #8f94fb;
-    --dark: #1e1e2c;
-    --light: #f8f9fa;
-    --accent: #ff6b6b;
-    --text: #333;
-    --bg: #ffffff;
-    --card-bg: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.1);
+    /* Light theme color palette */
+    --primary: #4e54c8;       /* Main brand color */
+    --secondary: #8f94fb;     /* Secondary brand color */
+    --dark: #1e1e2c;          /* Dark text/background */
+    --light: #f8f9fa;         /* Light background */
+    --accent: #ff6b6b;        /* Accent color for buttons */
+    --text: #333;             /* Main text color */
+    --bg: #ffffff;            /* Page background */
+    --card-bg: #ffffff;       /* Card backgrounds */
+    --shadow: rgba(0, 0, 0, 0.1); /* Shadow color */
 }
 
+/* Dark theme color overrides */
 .dark-mode {
     --primary: #8f94fb;
     --secondary: #4e54c8;
@@ -22,51 +30,55 @@
     --shadow: rgba(0, 0, 0, 0.3);
 }
 
+/* === BASE STYLES === */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;    /* Consistent box model */
     font-family: 'Poppins', sans-serif;
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.3s, color 0.3s; /* Smooth theme transitions */
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    line-height: 1.6;
+    line-height: 1.6;          /* Improved readability */
 }
 
+/* Main container for centered content */
 .container {
-    max-width: 1200px;
+    max-width: 1200px;         /* Responsive max-width */
     margin: 0 auto;
     padding: 20px;
 }
 
-/* === HEADER === */
+/* === HEADER STYLES === */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
     margin-bottom: 30px;
-    border-bottom: 1px solid var(--shadow);
+    border-bottom: 1px solid var(--shadow); /* Subtle separator */
 }
 
+/* Logo with gradient text effect */
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: transparent;        /* Required for gradient text */
 }
 
+/* Theme toggle button styling */
 .theme-toggle {
     background: var(--card-bg);
     border: none;
     padding: 8px 15px;
-    border-radius: 50px;
+    border-radius: 50px;       /* Pill-shaped button */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -75,9 +87,9 @@ header {
     color: var(--text);
 }
 
-/* === SEARCH BAR === */
+/* === SEARCH BAR STYLES === */
 .search-container {
-    position: relative;
+    position: relative;        /* For absolute positioning of search icon */
     margin-bottom: 30px;
 }
 
@@ -85,16 +97,16 @@ header {
     width: 100%;
     padding: 15px 20px;
     border: none;
-    border-radius: 50px;
+    border-radius: 50px;       /* Rounded search bar */
     font-size: 1rem;
     background: var(--card-bg);
     color: var(--text);
     box-shadow: 0 4px 10px var(--shadow);
-    outline: none;
+    outline: none;             /* Remove default focus outline */
 }
 
 #search-input::placeholder {
-    color: #999;
+    color: #999;              /* Light placeholder text */
 }
 
 .search-icon {
@@ -106,16 +118,17 @@ header {
     cursor: pointer;
 }
 
-/* === WORD DISPLAY === */
+/* === WORD DISPLAY STYLES === */
 .word-display {
     background: var(--card-bg);
     border-radius: 15px;
     padding: 30px;
     margin-bottom: 30px;
     box-shadow: 0 5px 15px var(--shadow);
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.5s ease; /* Entry animation */
 }
 
+/* Fade-in animation definition */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -131,50 +144,53 @@ header {
 .word-title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--primary);     /* Use primary brand color */
 }
 
 .word-phonetic {
     font-style: italic;
-    color: var(--secondary);
+    color: var(--secondary);   /* Use secondary brand color */
     margin-bottom: 10px;
 }
 
+/* Audio playback button */
 .play-audio {
     background: var(--primary);
     color: white;
     border: none;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 50%;        /* Circular button */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s; /* Smooth hover effect */
 }
 
 .play-audio:hover {
-    transform: scale(1.1);
+    transform: scale(1.1);     /* Slight grow on hover */
 }
 
 .word-meaning {
     margin: 20px 0;
 }
 
+/* Example sentence styling */
 .word-example {
     font-style: italic;
     padding: 10px;
-    background: rgba(79, 84, 200, 0.1);
+    background: rgba(79, 84, 200, 0.1); /* Semi-transparent background */
     border-left: 3px solid var(--primary);
     margin: 15px 0;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0; /* Rounded right corners only */
 }
 
+/* Synonyms list styling */
 .synonyms {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: wrap;           /* Allow wrapping on small screens */
+    gap: 10px;                 /* Consistent spacing */
     margin-top: 15px;
 }
 
@@ -182,10 +198,11 @@ header {
     background: var(--primary);
     color: white;
     padding: 5px 10px;
-    border-radius: 20px;
+    border-radius: 20px;       /* Pill-shaped tags */
     font-size: 0.9rem;
 }
 
+/* Favorite button styling */
 .favorite-btn {
     margin-top: 20px;
     padding: 8px 15px;
@@ -199,13 +216,13 @@ header {
 }
 
 .favorite-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
-/* === WORD SUGGESTIONS === */
+/* === WORD SUGGESTIONS STYLES === */
 .suggestions {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
     gap: 15px;
     margin-bottom: 30px;
 }
@@ -216,12 +233,12 @@ header {
     border-radius: 10px;
     box-shadow: 0 3px 8px var(--shadow);
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s; /* Smooth hover animation */
 }
 
 .suggestion-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px var(--shadow);
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 15px var(--shadow); /* Enhanced shadow on hover */
 }
 
 .suggestion-word {
@@ -233,10 +250,10 @@ header {
 .suggestion-meaning {
     font-size: 0.9rem;
     color: var(--text);
-    opacity: 0.8;
+    opacity: 0.8;              /* Slightly muted text */
 }
 
-/* === WORD OF THE DAY === */
+/* === WORD OF THE DAY STYLES === */
 .word-of-the-day {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
@@ -265,15 +282,16 @@ header {
     margin-top: 10px;
 }
 
-/* === HISTORY & FAVORITES === */
+/* === HISTORY & FAVORITES STYLES === */
 .history-favorites {
     display: flex;
-    gap: 20px;
+    gap: 20px;                 /* Space between columns */
     margin-bottom: 30px;
 }
 
+/* Shared styles for history and favorites sections */
 .history, .favorites {
-    flex: 1;
+    flex: 1;                   /* Equal width columns */
     background: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
@@ -290,7 +308,7 @@ header {
 }
 
 .word-list {
-    list-style: none;
+    list-style: none;          /* Remove default bullets */
 }
 
 .word-list li {
@@ -298,34 +316,37 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 8px 0;
-    border-bottom: 1px dashed rgba(79, 84, 200, 0.2);
+    border-bottom: 1px dashed rgba(79, 84, 200, 0.2); /* Subtle separator */
     cursor: pointer;
 }
 
 .word-list li:last-child {
-    border-bottom: none;
+    border-bottom: none;       /* No border on last item */
 }
 
+/* Delete buttons for history/favorites items */
 .delete-btn {
     background: none;
     border: none;
     color: var(--accent);
     cursor: pointer;
     padding: 5px;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+    opacity: 0.7;              /* Slightly transparent by default */
+    transition: opacity 0.2s;  /* Smooth hover effect */
 }
 
 .delete-btn:hover {
-    opacity: 1;
+    opacity: 1;                /* Full opacity on hover */
 }
 
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
+    /* Stack history and favorites on small screens */
     .history-favorites {
         flex-direction: column;
     }
     
+    /* Adjust suggestion card sizing */
     .suggestions {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }

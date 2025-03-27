@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Basic meta tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dictionary App</title>
+
+    <!-- External resources -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -11,8 +14,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Main container for all content -->
     <div class="container">
-      <!-- HEADER -->
+      <!-- Header section with logo and theme toggle -->
       <header>
         <div class="logo">Mini Oxford</div>
         <button class="theme-toggle" id="theme-toggle">
@@ -21,7 +25,7 @@
         </button>
       </header>
 
-      <!-- SEARCH BAR -->
+      <!-- Search bar section -->
       <div class="search-container">
         <input
           type="text"
@@ -31,7 +35,7 @@
         <i class="fas fa-search search-icon" id="search-btn"></i>
       </div>
 
-      <!-- WORD OF THE DAY -->
+      <!-- Word of the Day section -->
       <div class="word-of-the-day" id="word-of-the-day">
         <div class="wotd-title">
           <i class="fas fa-star"></i>
@@ -46,8 +50,9 @@
         </div>
       </div>
 
-      <!-- WORD DISPLAY (DYNAMIC) -->
+      <!-- Dynamic word display (hidden by default) -->
       <div class="word-display" id="word-display" style="display: none">
+        <!-- Word header with title and audio button -->
         <div class="word-header">
           <div>
             <h1 class="word-title" id="searched-word">Word</h1>
@@ -57,6 +62,8 @@
             <i class="fas fa-volume-up"></i>
           </button>
         </div>
+
+        <!-- Word definition and example -->
         <div class="word-meaning" id="meaning">
           <p>
             <strong>Definition:</strong>
@@ -69,25 +76,29 @@
             <span id="example-text">"Use the word in a sentence."</span>
           </p>
         </div>
+
+        <!-- Synonyms list -->
         <div class="synonyms" id="synonyms">
           <span class="synonym">happy</span>
           <span class="synonym">joyful</span>
         </div>
+
+        <!-- Favorite button -->
         <button id="save-favorite" class="favorite-btn">
           <i class="fas fa-heart"></i> Save to Favorites
         </button>
       </div>
 
-      <!-- WORD SUGGESTIONS -->
+      <!-- Word suggestions section -->
       <h2 class="section-title">
         <i class="fas fa-lightbulb"></i>
         <span>Word Suggestions</span>
       </h2>
       <div class="suggestions" id="suggestions">
-        <!-- Dynamically loaded -->
+        <!-- Dynamically loaded by JavaScript -->
       </div>
 
-      <!-- HISTORY & FAVORITES -->
+      <!-- History and favorites sections -->
       <div class="history-favorites">
         <div class="history">
           <h2 class="section-title">
@@ -95,7 +106,7 @@
             <span>Recent Searches</span>
           </h2>
           <ul class="word-list" id="history-list">
-            <!-- Dynamically loaded -->
+            <!-- Dynamically loaded by JavaScript -->
           </ul>
         </div>
         <div class="favorites">
@@ -104,11 +115,13 @@
             <span>Favorites</span>
           </h2>
           <ul class="word-list" id="favorites-list">
-            <!-- Dynamically loaded -->
+            <!-- Dynamically loaded by JavaScript -->
           </ul>
         </div>
       </div>
     </div>
+
+    <!-- Main JavaScript file -->
     <script src="javascript.js"></script>
   </body>
 </html>
