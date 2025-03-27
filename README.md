@@ -22,7 +22,16 @@ A modern dictionary web application with:
 - HTML5, CSS3, JavaScript
 - DictionaryAPI.dev (free dictionary API)
 - Font Awesome icons
-- LocalStorage for persistent data
+- LocalStorage for persistent data    
+
+## API Usage
+This project uses the [Free Dictionary API](https://dictionaryapi.dev/).
+- Rate Limit: 10 requests/hour (client-side)
+- No API key required
+
+## Security
+- All data is stored locally in `localStorage`
+- No tracking or analytics
 
 ## Installation
 1. Clone the repository:

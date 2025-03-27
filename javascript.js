@@ -275,4 +275,5 @@ function removeFromFavorites(word) {
 
 // Initialize history and favorites lists on page load
 updateHistoryList();
-updateFavoritesList();
+updateFavoritesList();     
+
