@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- HEADER -->
+      <header>
+        <div class="logo">Mini Oxford</div>
+        <button class="theme-toggle" id="theme-toggle">
+          <i class="fas fa-moon"></i>
+          <span>Dark Mode</span>
+        </button>
+      </header>
+
+      <!-- SEARCH BAR -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for a word..."
+        />
+        <i class="fas fa-search search-icon" id="search-btn"></i>
+      </div>
+
+      <!-- WORD OF THE DAY -->
+      <div class="word-of-the-day" id="word-of-the-day">
+        <div class="wotd-title">
+          <i class="fas fa-star"></i>
+          <span>Word of the Day</span>
+        </div>
+        <div class="wotd-word" id="wotd-word">Serendipity</div>
+        <div class="wotd-meaning" id="wotd-meaning">
+          Finding something good without looking for it
+        </div>
+        <div class="wotd-fact" id="wotd-fact">
+          Did you know? "Serendipity" comes from a Persian fairy tale!
+        </div>
+      </div>
+
+      <!-- WORD DISPLAY (DYNAMIC) -->
+      <div class="word-display" id="word-display" style="display: none">
+        <div class="word-header">
+          <div>
+            <h1 class="word-title" id="searched-word">Word</h1>
+            <p class="word-phonetic" id="phonetic">/fəˈnɛtɪk/</p>
+          </div>
+          <button class="play-audio" id="play-audio">
+            <i class="fas fa-volume-up"></i>
+          </button>
+        </div>
+        <div class="word-meaning" id="meaning">
+          <p>
+            <strong>Definition:</strong>
+            <span id="definition">The meaning of the word.</span>
+          </p>
+        </div>
+        <div class="word-example" id="example">
+          <p>
+            <strong>Example:</strong>
+            <span id="example-text">"Use the word in a sentence."</span>
+          </p>
+        </div>
+        <div class="synonyms" id="synonyms">
+          <span class="synonym">happy</span>
+          <span class="synonym">joyful</span>
+        </div>
+        <button id="save-favorite" class="favorite-btn">
+          <i class="fas fa-heart"></i> Save to Favorites
+        </button>
+      </div>
+
+      <!-- WORD SUGGESTIONS -->
+      <h2 class="section-title">
+        <i class="fas fa-lightbulb"></i>
+        <span>Word Suggestions</span>
+      </h2>
+      <div class="suggestions" id="suggestions">
+        <!-- Dynamically loaded -->
+      </div>
+
+      <!-- HISTORY & FAVORITES -->
+      <div class="history-favorites">
+        <div class="history">
+          <h2 class="section-title">
+            <i class="fas fa-history"></i>
+            <span>Recent Searches</span>
+          </h2>
+          <ul class="word-list" id="history-list">
+            <!-- Dynamically loaded -->
+          </ul>
+        </div>
+        <div class="favorites">
+          <h2 class="section-title">
+            <i class="fas fa-heart"></i>
+            <span>Favorites</span>
+          </h2>
+          <ul class="word-list" id="favorites-list">
+            <!-- Dynamically loaded -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="javascript.js"></script>
+  </body>
+</html>
