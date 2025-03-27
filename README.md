@@ -15,8 +15,8 @@ A modern dictionary web application with:
 - **Responsive**: Works on mobile, tablet, and desktop
 
 ## Importance of the App 
-- **Free Teacher**:users get to know about unfamiliar english word, especially for non-English speaking countries
-- **Words Pronounciation Integration** Some english word are tricky and difficult to pronounce, mini oxford offers a solution.
+- **Free Teacher**: Users get to know about unfamiliar english word, especially for non-English speaking countries
+- **Words Pronounciation Integration**: Some english word are tricky and difficult to pronounce, mini oxford offers a solution.
 
 ## Technologies
 - HTML5, CSS3, JavaScript
@@ -27,4 +27,9 @@ A modern dictionary web application with:
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Emma001code/DictionaryApp.git
+   git clone https://github.com/Emma001code/DictionaryApp.git  
+
+## Acknowledgement
+Thanks to:
+- dictionaryapi.dev: for their wonderful API 
+- African Leadership University for this Amazing at the same time challenging project.
