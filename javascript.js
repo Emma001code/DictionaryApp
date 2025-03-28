@@ -8,21 +8,27 @@
  */
 
 // ===== DOM ELEMENT SELECTORS =====
-// Get references to all interactive elements
 const themeToggle = document.getElementById('theme-toggle');
 const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 const wordDisplay = document.getElementById('word-display');
-const wordOfTheDay = document.getElementById('word-of-the-day');
 const suggestionsContainer = document.getElementById('suggestions');
 const historyList = document.getElementById('history-list');
 const favoritesList = document.getElementById('favorites-list');
 
+// ===== ERROR HANDLING =====
+function showError(message) {
+  const errorEl = document.createElement('div');
+  errorEl.className = 'error-message';
+  errorEl.innerHTML = `
+    <i class="fas fa-exclamation-circle"></i>
+    ${message}
+  `;
+  document.querySelector('.container').prepend(errorEl);
+  setTimeout(() => errorEl.remove(), 3000);
+}
+
 // ===== THEME TOGGLE FUNCTIONALITY =====
-/**
- * Toggles between dark and light color themes
- * Updates button icon and text to reflect current theme
- */
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const isDarkMode = document.body.classList.contains('dark-mode');
@@ -32,10 +38,6 @@ themeToggle.addEventListener('click', () => {
 });
 
 // ===== WORD OF THE DAY FUNCTIONALITY =====
-/**
- * Array of words with their meanings and interesting facts
- * Used to display a different word each day
- */
 const wotdWords = [
     { word: "Serendipity", meaning: "Finding something good without looking for it", fact: "Comes from a Persian fairy tale!" },
     { word: "Petrichor", meaning: "The smell of rain on dry earth", fact: "Coined in 1964 by Australian scientists" },
@@ -44,23 +46,15 @@ const wotdWords = [
     { word: "Sonder", meaning: "Realizing everyone has a complex life", fact: "Popularized by The Dictionary of Obscure Sorrows" }
 ];
 
-/**
- * Selects and displays a random word from the wotdWords array
- */
 function setWordOfTheDay() {
     const randomWord = wotdWords[Math.floor(Math.random() * wotdWords.length)];
     document.getElementById('wotd-word').textContent = randomWord.word;
     document.getElementById('wotd-meaning').textContent = randomWord.meaning;
     document.getElementById('wotd-fact').textContent = `Did you know? "${randomWord.fact}"`;
 }
-
-// Initialize word of the day on page load
 setWordOfTheDay();
 
 // ===== WORD SUGGESTIONS FUNCTIONALITY =====
-/**
- * Array of interesting words to suggest to users
- */
 const interestingWords = [
     { word: "Defenestration", meaning: "The act of throwing someone out a window" },
     { word: "Hiraeth", meaning: "Nostalgia for a home you can't return to" },
@@ -72,10 +66,6 @@ const interestingWords = [
     { word: "Ineffable", meaning: "Too great to be expressed in words" }
 ];
 
-/**
- * Creates suggestion cards for each word in interestingWords array
- * Sets up click handlers to populate search field and fetch word data
- */
 function loadSuggestions() {
     suggestionsContainer.innerHTML = interestingWords.map(word => `
         <div class="suggestion-card" data-word="${word.word}" role="button" tabindex="0">
@@ -84,7 +74,6 @@ function loadSuggestions() {
         </div>
     `).join('');
 
-    // Add click event to each suggestion card
     document.querySelectorAll('.suggestion-card').forEach(card => {
         card.addEventListener('click', () => {
             searchInput.value = card.getAttribute('data-word');
@@ -92,15 +81,9 @@ function loadSuggestions() {
         });
     });
 }
-
-// Load suggestions on page initialization
 loadSuggestions();
 
 // ===== DICTIONARY API INTEGRATION =====
-/**
- * Fetches word data from the dictionary API
- * @param {string} word - The word to look up
- */
 async function fetchWord(word) {
     if (!word) return;
 
@@ -108,34 +91,29 @@ async function fetchWord(word) {
         const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         const data = await response.json();
 
-        // Handle case where word isn't found
         if (data.title === 'No Definitions Found') {
-            alert('Word not found! Try another.');
+            showError('Word not found! Try another.');
             return;
         }
 
         const wordData = data[0];
         const firstMeaning = wordData.meanings[0];
         
-        // Extract word details from API response
         const definition = firstMeaning.definitions[0].definition;
         const example = firstMeaning.definitions[0].example || "No example available";
         const synonyms = firstMeaning.synonyms.slice(0, 5);
         const phonetic = wordData.phonetic || wordData.phonetics.find(p => p.text)?.text || '';
 
-        // Update DOM with fetched word data
         document.getElementById('searched-word').textContent = wordData.word;
         document.getElementById('phonetic').textContent = phonetic;
         document.getElementById('definition').textContent = definition;
         document.getElementById('example-text').textContent = example;
         
-        // Update synonyms display
         const synonymsContainer = document.getElementById('synonyms');
         synonymsContainer.innerHTML = synonyms.length > 0 
             ? synonyms.map(syn => `<span class="synonym">${syn}</span>`).join('')
             : '<span>No synonyms found</span>';
 
-        // Handle audio pronunciation if available
         const audioBtn = document.getElementById('play-audio');
         const audioSrc = wordData.phonetics.find(p => p.audio)?.audio;
         if (audioSrc) {
@@ -145,26 +123,21 @@ async function fetchWord(word) {
             audioBtn.style.display = 'none';
         }
 
-        // Show the word display section
         wordDisplay.style.display = 'block';
-
-        // Add to search history
         addToHistory(wordData.word);
 
     } catch (error) {
-        alert('Error fetching word. Try again later.');
+        showError('Error fetching word. Try again later.');
         console.error('API Error:', error);
     }
 }
 
 // ===== SEARCH FUNCTIONALITY =====
-// Handle search button click
 searchBtn.addEventListener('click', () => {
     const word = searchInput.value.trim();
     if (word) fetchWord(word);
 });
 
-// Handle Enter key in search input
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         const word = searchInput.value.trim();
@@ -173,24 +146,16 @@ searchInput.addEventListener('keypress', (e) => {
 });
 
 // ===== HISTORY & FAVORITES MANAGEMENT =====
-/**
- * Adds a word to search history in localStorage
- * @param {string} word - The word to add to history
- */
 function addToHistory(word) {
     let history = JSON.parse(localStorage.getItem('wordHistory')) || [];
     if (!history.includes(word)) {
         history.unshift(word);
-        // Keep only the 5 most recent searches
         if (history.length > 5) history.pop();
         localStorage.setItem('wordHistory', JSON.stringify(history));
         updateHistoryList();
     }
 }
 
-/**
- * Updates the history list in the DOM
- */
 function updateHistoryList() {
     const history = JSON.parse(localStorage.getItem('wordHistory')) || [];
     historyList.innerHTML = history.map(word => `
@@ -203,10 +168,6 @@ function updateHistoryList() {
     `).join('');
 }
 
-/**
- * Removes a word from history
- * @param {string} word - The word to remove
- */
 function removeFromHistory(word) {
     let history = JSON.parse(localStorage.getItem('wordHistory')) || [];
     history = history.filter(w => w !== word);
@@ -214,9 +175,6 @@ function removeFromHistory(word) {
     updateHistoryList();
 }
 
-/**
- * Handles saving/unsaving words to favorites
- */
 document.getElementById('save-favorite').addEventListener('click', function() {
     const word = document.getElementById('searched-word').textContent;
     if (!word) return;
@@ -224,7 +182,6 @@ document.getElementById('save-favorite').addEventListener('click', function() {
     let favorites = JSON.parse(localStorage.getItem('wordFavorites')) || [];
     
     if (!favorites.includes(word)) {
-        // Add to favorites
         favorites.push(word);
         localStorage.setItem('wordFavorites', JSON.stringify(favorites));
         updateFavoritesList();
@@ -233,7 +190,6 @@ document.getElementById('save-favorite').addEventListener('click', function() {
             this.innerHTML = '<i class="fas fa-heart"></i> Save to Favorites';
         }, 2000);
     } else {
-        // Already in favorites
         this.innerHTML = '<i class="fas fa-heart"></i> Already Saved';
         setTimeout(() => {
             this.innerHTML = '<i class="fas fa-heart"></i> Save to Favorites';
@@ -241,9 +197,6 @@ document.getElementById('save-favorite').addEventListener('click', function() {
     }
 });
 
-/**
- * Updates the favorites list in the DOM
- */
 function updateFavoritesList() {
     const favorites = JSON.parse(localStorage.getItem('wordFavorites')) || [];
     favoritesList.innerHTML = favorites.map(word => `
@@ -256,24 +209,18 @@ function updateFavoritesList() {
     `).join('');
 }
 
-/**
- * Removes a word from favorites
- * @param {string} word - The word to remove
- */
 function removeFromFavorites(word) {
     let favorites = JSON.parse(localStorage.getItem('wordFavorites')) || [];
     favorites = favorites.filter(w => w !== word);
     localStorage.setItem('wordFavorites', JSON.stringify(favorites));
     updateFavoritesList();
     
-    // Update favorite button if viewing removed word
     const currentWord = document.getElementById('searched-word').textContent;
     if (currentWord === word) {
         document.getElementById('save-favorite').innerHTML = '<i class="fas fa-heart"></i> Save to Favorites';
     }
 }
 
-// Initialize history and favorites lists on page load
 updateHistoryList();
-updateFavoritesList();     
+updateFavoritesList();   
 
