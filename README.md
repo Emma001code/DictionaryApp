@@ -64,7 +64,10 @@ DictionaryApp/
 ## Challenges Overcome
 - **Audio Compatibility**: HTML5 Audio fallback implementation  
 - **Voice Search**: Web Speech API polyfill for browser support  
-- **State Sync**: localStorage for cross-tab consistency  
+- **State Sync**: localStorage for cross-tab consistency   
+
+## Demo video Link 
+- https://youtu.be/MSVNBWtSeB0?si=OQgzZ6Y5YDY2FM0O
 
 ## Acknowledgement
 Thanks to:
