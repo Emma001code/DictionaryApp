@@ -1,5 +1,5 @@
 # Mini Oxford Dictionary App 
-[App preview](realemmanuel.tech)
+[App preview](http://realemmanuel.tech)
 
 A modern dictionary web application deployed accross multiple servers, with:
 - Word definitions, pronunciations, and examples
@@ -15,9 +15,9 @@ A modern dictionary web application deployed accross multiple servers, with:
 - **Local Storage**: Saves your history and favorites
 - **Responsive**: Works on mobile, tablet, and desktop
 
-## Importance of the App 
-- **Free Teacher**: Users get to know about unfamiliar English word, especially for non-English speaking countries
-- **Words Pronounciation Integration**: Some english word are tricky and difficult to pronounce, mini oxford offers a solution.
+## Importance 🎯
+- **Language Learning**: Helps non-native speakers master English vocabulary
+- **Pronunciation Guide**: Audio playback for proper pronounciation for tricky English words
 
 ## Tech Stack 💻
 | Component | Technology |
