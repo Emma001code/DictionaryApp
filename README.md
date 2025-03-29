@@ -1,4 +1,5 @@
-# Mini Oxford Dictionary App
+# Mini Oxford Dictionary App 
+[App preview](realemmanuel.tech)
 
 A modern dictionary web application deployed accross multiple servers, with:
 - Word definitions, pronunciations, and examples
@@ -23,7 +24,7 @@ A modern dictionary web application deployed accross multiple servers, with:
 |-----------|------------|
 | Frontend | HTML5, CSS3, JavaScript |
 | API | [Free Dictionary API](https://dictionaryapi.dev/) |
-| Hosting | Nginx + Load Balancing |
+| Hosting | Nginx + Load Balancing + web01 + web02 |
 | Storage | Browser localStorage |
 | Icons | Font Awesome 6 |
    
@@ -43,24 +44,23 @@ This project uses the [Free Dictionary API](https://dictionaryapi.dev/).
    git clone https://github.com/Emma001code/DictionaryApp.git  
 2. cd DictionaryApp && open index.html
 
-# Server deployment (Web01/Web02)
-sudo apt update && sudo apt install nginx
-sudo mkdir -p /var/www/dictionary
-sudo chown -R $USER:$USER /var/www/dictionary
-git clone https://github.com/Emma001code/DictionaryApp.git /var/www/dictionary
-sudo systemctl restart nginx    
+## Server deployment processes (Web01/Web02)
+- git clone git clone https://github.com/Emma001code/DictionaryApp.git in both severs 
+- sudo apt update upgrade -y  && sudo apt install nginx
+- sudo apt install python3 python3-pip python3-venv -y
+- cd /var/www/html/ && git clone git clone https://github.com/Emma001code/DictionaryApp.git
+- cd Dictionaryapp
+- sudo cp * ..
+- follow this process on both servers for deployment  
 
-# App structure
+## App structure
 DictionaryApp/
 ├── index.html
 ├── style.css
 ├── javascript.js
-├── README.md
-└── screenshots/
-    └── demo-screenshot.png   
+├── README.md 
 
     
-
 ## Challenges Overcome
 - **Audio Compatibility**: HTML5 Audio fallback implementation  
 - **Voice Search**: Web Speech API polyfill for browser support  
