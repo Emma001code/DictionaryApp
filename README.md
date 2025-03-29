@@ -1,5 +1,5 @@
 # Mini Oxford Dictionary App 
-[App preview](www.realemmanuel.tech)
+[App preview](https://www.realemmanuel.tech)
 
 A modern dictionary web application deployed accross multiple servers, with:
 - Word definitions, pronunciations, and examples
