@@ -92,7 +92,7 @@ async function fetchWord(word) {
         const data = await response.json();
 
         if (data.title === 'No Definitions Found') {
-            showError('Word not found! Try another.');
+            showError('Word not found! check spelling or Try another.');
             return;
         }
 
